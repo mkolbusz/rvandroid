@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -23,13 +24,16 @@ public class MovieRVAdapter extends RecyclerView.Adapter {
         public TextView title;
         public TextView year;
         public TextView actors;
+        public Button magicButton;
 
         public MovieViewHolder(View itemView) {
             super(itemView);
             title = (TextView) itemView.findViewById(R.id.title);
             year = (TextView) itemView.findViewById(R.id.year);
-            actors = (TextView) itemView.findViewById(R.id.actors);
+            actors = (TextView) itemView.findViewById(R.id.actors);git
         }
+
+
     }
 
     public MovieRVAdapter(List<Movie> movies, RecyclerView recyclerView) {
@@ -40,6 +44,16 @@ public class MovieRVAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item, parent, false);
+
+        itemView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                int positionToDelete = recyclerView.getChildAdapterPosition(view);
+                movies.remove(positionToDelete);
+                notifyItemRemoved(positionToDelete);
+            }
+        });
+
         return new MovieViewHolder(itemView);
     }
 
