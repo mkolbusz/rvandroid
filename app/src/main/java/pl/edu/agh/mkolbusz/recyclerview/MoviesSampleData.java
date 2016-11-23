@@ -29,7 +29,7 @@ public class MoviesSampleData {
 
     public static Set<String> getRandomActors(){
         Set<String> result = new HashSet<>();
-        int number = random.nextInt(5);
+        int number = random.nextInt(3)+2;
         while (result.size() < number){
             result.add(actors[random.nextInt(actors.length)]);
         }
