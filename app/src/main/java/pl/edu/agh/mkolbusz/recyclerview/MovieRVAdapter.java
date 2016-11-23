@@ -20,7 +20,9 @@ public class MovieRVAdapter extends RecyclerView.Adapter {
     RecyclerView recyclerView;
 
     public class MovieViewHolder extends RecyclerView.ViewHolder {
-        public TextView title, year, actors;
+        public TextView title;
+        public TextView year;
+        public TextView actors;
 
         public MovieViewHolder(View itemView) {
             super(itemView);
@@ -38,16 +40,16 @@ public class MovieRVAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item, parent, false);
-        return  new MovieViewHolder(itemView);
+        return new MovieViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         Movie movie = movies.get(position);
-        MovieViewHolder myHolder = (MovieViewHolder)holder;
-        myHolder.actors.setText(movie.actorsToReadableString());
-        myHolder.year.setText(movie.getYear());
-        myHolder.title.setText(movie.getTitle());
+
+        ((MovieViewHolder) holder).actors.setText(movie.actorsToReadableString());
+        ((MovieViewHolder) holder).year.setText(String.valueOf(movie.getYear()));
+        ((MovieViewHolder) holder).title.setText(movie.getTitle());
     }
     @Override
     public int getItemCount() {
